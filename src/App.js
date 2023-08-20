@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import Navbar from "./components/Navbar";
+import TextForm from './components/TextForm';
+// import About from "./components/About";
 
-function App() {
+
+const App = () => {
+  const[Mode, setMode] = useState('white');
+  const[ModeText, setModeText] = useState('Dark');
+
+  const toggleMode = () => {
+    if (Mode === 'black') {
+      setMode('white');
+      document.body.style.backgroundColor = 'white';
+      setModeText('Dark')
+    }
+    else {
+       
+        setMode('black');
+        document.body.style.backgroundColor = 'grey';
+        setModeText('Light')
+    }
+};
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar title={"PHARMA Inc."} item2={"about us"} item3={"Address"} mode={Mode} toogleMode = {toggleMode} modeText = {ModeText} />
+      <TextForm heading={"Write your opinion"}/>
+      {/* <About heading={"Write your opinion"} /> */}
     </div>
   );
-}
+};
 
 export default App;
